@@ -1,0 +1,56 @@
+
+<html>
+
+
+<body>
+    <div class="topnav">
+        <div>
+            <a class="nav-link" (click)="callHome()">
+                <span class="glyphicon glyphicon-home"></span></a>
+            <a class="nav-link" (click)="showEditPopup()">Update Profile</a>
+            <a class="nav-link" (click)="routeTosellBook()">Sell Your Products</a>
+            <a class="nav-link" (click)="routeToViewMyCart()"><span class="glyphicon glyphicon-shopping-cart">Cart </span></a>
+            <a class="nav-link" (click)="routeToBooksAddedByMe()">Products Added </a>
+            <a class="nav-link" (click)="routeToMyOrders()">Order History</a>
+            <a class="nav-link" (click)="callLogOut()">Logout
+                <span class="glyphicon glyphicon-log-out"></span>
+            </a>
+        </div>
+    </div>
+    <style>h5{color:white;  font-family: "Great Vibes", cursive; font-size: 15px;  font-weight: normal;}
+        h6{color:#d54d7b;  font-family: "Great Vibes", cursive; font-size: 30px;  font-weight: normal;}
+    </style>
+    <div style="height:610px;"  class="jumbotron text-center">
+        <h1 class="display-3">Thank You!</h1>
+        <p class="lead"><strong>Please check your email</strong> for confirmation of the order..!</p>
+        <hr>
+        <p>
+            Shall we place your order {{customer.custName}} !
+        </p>
+        <p class="lead"><strong>Shipping Address:</strong>
+            {{customer.address.houseNo}} 
+            {{customer.address.street}}
+            {{customer.address.city}}
+            {{customer.address.pincode}} 
+            {{customer.address.state}} 
+        </p>
+        <p class="lead">
+            <a  class="btn btn-primary btn-sm" (click)="placeOrder(customer.custId)" routerLink="/order" >Checkout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-primary btn-sm"routerLink="/cart">Cancel</a>
+         </p>
+               <hr>
+
+<form #registerForm="ngForm" class="form-group"
+            (ngSubmit)="registerForm.form.valid && register(registerForm.value)" validate>
+           
+<!-- <textarea id="review" name="review"  [(ngModel)]='review.review' rows="4" cols="50"> -->
+    
+<!-- </textarea> -->
+
+<div class="form-group purple-border">
+    <p class="lead">How can we make <strong>GroceryHub</strong> work for you?</p>
+    <textarea  id="review" name="review"  [(ngModel)]='review.review' rows="4" cols="50" placeholder="Share your valuable Feedback">        </textarea>
+  </div>
+    <input type="submit" class="btn btn-primary btn-sm" [disabled]="!registerForm.valid"  value="Submit">
+</form>
+</div>

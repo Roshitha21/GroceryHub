@@ -1,0 +1,397 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body>
+    
+    <div class="topnav">
+        <div>
+            <a class="nav-link" (click)="callHome()">
+                <span class="glyphicon glyphicon-home"></span></a>
+                <a  class="link-3"routerLink="/products">Products</a>
+
+            <a class="nav-link" (click)="showEditPopup()">Update Profile</a>
+            <a class="nav-link" (click)="routeTosellProduct()">Sell Your Product</a>
+            <a class="nav-link" (click)="routeToViewMyCart()"><span class="glyphicon glyphicon-shopping-cart">Cart </span></a>
+            <a class="nav-link" (click)="routeToProductsAddedByMe()">Products Added</a>
+            
+            <a class="nav-link" (click)="routeToMyOrders()">Order History</a>
+            <a  class="link-3"routerLink="/review">Review</a>
+
+            <a class="nav-link" (click)="callLogOut()">
+                <span class="glyphicon glyphicon-log-out"></span>
+            </a>
+        </div>
+
+        <div class="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search..." name="productName" [(ngModel)]='productName' required>
+                <button type="submit" (click)="searchProduct(productName)"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="productName!=null">
+        <div *ngIf="searchedProduct;else message">
+            <div class="card" style="border-radius: 15px;">
+                <img class="card-img" style="border-radius: 15px;" src="http://localhost:8080/RESTAPI2018/image/{{searchedProduct.imageName}}">
+                <div class="card-body">
+                    <h4 class="card-title">{{searchedProduct.productName}}</h4>
+                    <p class="card-text">Description:{{searchedProduct.description}}</p>
+                    <h5>Price:{{searchedProduct.price | currency: '&#8377;'}}</h5>
+                    <p class="card-text">Category:{{searchedProduct.category}}</p>
+                    <p class="card-text">Quantity Available:{{searchedProduct.quantityAdded}}</p>
+                    <button class="btn10" (click)="handleAddToCart(searchedProduct)">Add To Cart</button>
+                </div>
+
+            </div>
+        </div>
+        <ng-template #message>
+            <p  style="text-align:center;">Sorry!Product not found..</p>
+        </ng-template>
+
+    </div>
+
+
+    <div>
+        <style>
+            h6{color: #d54d7b; font-family: "Great Vibes", cursive; font-size: 20px;  font-weight: normal;} 
+            .btn10{
+    
+                font-family: "proxima-nova", sans-serif;
+                font-weight: 500;
+                font-size: 13px;
+                text-transform: uppercase!important;
+                letter-spacing: 1px;
+                color: black;
+                cursor: hand;
+                text-align: center;
+                border: 1px solid pink;
+                border-radius:50px;
+                position: relative;
+                overflow: hidden!important;
+                -webkit-transition: all .3s ease-in-out;
+                -moz-transition: all .3s ease-in-out;
+                -o-transition: all .3s ease-in-out;
+                transition: all .3s ease-in-out;
+                background: transparent!important;
+                z-index:10;
+                
+            }
+            
+            
+            .btn10:hover{
+                border: 1px solid #071982;
+                  color: #beeedd!important;
+            }
+            .btn10::before {
+                content: '';
+                width: 0%;
+                height: 100%;
+                display: block;
+                background: #071982;
+                position: absolute;
+                  -ms-transform: skewX(-20deg);
+                -webkit-transform: skewX(-20deg); 
+                transform: skewX(-20deg);   
+                left: -10%;
+                opacity: 1;
+                top: 0;
+                z-index: -12;
+                -moz-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+              -o-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+              -webkit-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+              transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+                   box-shadow:2px 0px 14px rgba(0,0,0,.6);
+              } 
+            
+            .btn10::after {
+                content: '';
+                width: 0%;
+                height: 100%;
+                display: block;
+                background: #80ffd3;
+                position: absolute;
+                -ms-transform: skewX(-20deg);
+                -webkit-transform: skewX(-20deg); 
+                transform: skewX(-20deg);   
+                left: -10%;
+                opacity: 0;
+                top: 0;
+                z-index: -15;
+                -webkit-transition: all .94s cubic-bezier(.2,.95,.57,.99);
+                -moz-transition: all .4s cubic-bezier(.2,.95,.57,.99);
+                -o-transition: all .4s cubic-bezier(.2,.95,.57,.99);
+                transition: all .4s cubic-bezier(.2,.95,.57,.99);
+                box-shadow: 2px 0px 14px rgba(0,0,0,.6);
+            }
+            .btn10:hover::before, .btn1O:hover::before{
+                opacity:1;
+                width: 116%;
+            }
+            .btn10:hover::after, .btn1O:hover::after{
+                opacity:1;
+                width: 120%;
+            }
+        </style>
+        <h6>Welcome...{{customer.custName}} !</h6>
+        
+    </div>
+    
+
+    <!--new products-->
+
+    <div>
+        <h6 style="text-align: center;">Products</h6>
+    </div>
+
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let product of newProducts">
+                <div class="card" style="border-radius: 15px;">
+                    <img class="card-img" style="border-radius: 15px;" src="http://localhost:8080/RESTAPI2018/image/{{product.imageName}}">
+                    <div class="card-body">
+                        <ng-container *ngIf=" {quantity:1} as  variable">
+                            <h4 class="card-title">{{product.productName}}</h4>
+                            <p class="card-text">Category:{{product.category}}</p>
+                            <p class="card-text">Description:{{product.description}}</p>
+                            <p class="card-text">Quantity Available:{{product.quantityAdded}}{{product.units}}</p>
+
+                            Select Quantity:  <input style="width: 40px;"type="number" min=1 name="variable.quantity" placeholder=1
+                                [(ngModel)]='variable.quantity'>
+                            <div *ngIf="variable.quantity > product.quantityAdded">
+                                {{product.quantityAdded}}{{product.units}}{{product.productName}} are available
+                            </div>
+                            <h5>Price:{{product.price | currency: '&#8377;'}}</h5><br>
+                            <button class="btn10" (click)="handleAddToCart2(product, variable.quantity)">Add To
+                                Cart</button>
+                        </ng-container>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <h6 style="text-align: center;">Vendor Products</h6>
+
+    <!--old products-->
+    <div class="container" >
+        <div class="row text-center">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let product of oldProducts">
+                <div style="border-radius: 15px;"class="card">
+                    <img class="card-img" style="border-radius: 15px;"src="http://localhost:8080/RESTAPI2018/image/{{product.imageName}}">
+                    <div class="card-body" >
+                        <ng-container *ngIf=" {quantity:1} as  variable">
+                            <h4 class="card-title">{{product.productName}}</h4>
+                            <p class="card-text">Category:{{product.category}}</p>
+                            <p class="card-text">Description:{{product.description}}</p>
+                            <p class="card-text">Quantity Available:{{product.quantityAdded}}{{product.units}}</p>
+
+                            Select Quantity:  <input style="width: 40px;"type="number" min=1 name="variable.quantity" placeholder=1
+                                [(ngModel)]='variable.quantity'>
+                            <div *ngIf="variable.quantity > product.quantityAdded">
+                                {{product.quantityAdded}}{{product.units}}{{product.productName}} Products are available
+                            </div>
+                            <h5>Price:{{product.price | currency: '&#8377;'}}</h5><br>
+                            <button class="btn10" (click)="handleAddToCart1(product, variable.quantity)">Add To
+                                Cart</button>
+                        </ng-container>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!--update form-->
+
+    <div class="modal fade" id="custModel">
+        <div class="modal-dialogue" style="width:800px;">
+
+            <div class="modal-content" style="transform: translate(35%,0%);">
+                <div class="modal-header">
+                    <span class="close" data-dismiss="modal">&times;</span>
+                    <style>
+                    h2{
+                        text-align:center;
+                        color: rgb(233, 41, 153);
+                        font-family:cursive;
+                        font-size: 20px;
+                      }</style>
+                    <h2 class="modal-title" style="transform: translate(-300%,0%);">Update Form</h2>
+                </div>
+
+                <div class="modal-body" >
+                    <form class="form-group">
+
+                        <div class="form">
+                            <style>
+                                h4{
+                                  color:maroon;
+                                  font-family: cursive;
+                                  font-size: 15px;
+                                }
+                            </style>
+
+                            <h4> Customer Id:</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="number" name="custId" [(ngModel)]="editObject.custId"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter Customer Name:</h4>
+                            <div class="input-group" >
+                                <input style="border-radius: 10px;"type="text" name="custName" [(ngModel)]="editObject.custName"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter Email :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="email" [(ngModel)]="editObject.email"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter State :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="state" [(ngModel)]="editObject.address.state"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter Street :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="street" [(ngModel)]="editObject.address.street"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter City :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="city" [(ngModel)]="editObject.address.city"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter HouseNo :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="houseNo" [(ngModel)]="editObject.address.houseNo"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter Pincode :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;" type="text" name="pincode" [(ngModel)]="editObject.address.pincode"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter LoginId :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="loginId" [(ngModel)]="editObject.loginId"
+                                    class="form-control"><br />
+                            </div>
+                            <h4>Enter password :</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="password" [(ngModel)]="editObject.password"
+                                    class="form-control"><br />
+                            </div>
+
+                            <h4>Enter mobile number:</h4>
+                            <div class="input-group">
+                                <input style="border-radius: 10px;"type="text" name="mobileNo" [(ngModel)]="editObject.mobileNo"
+                                    class="form-control"><br />
+                            </div><br>&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button  class="btn btn-primary btn-sm" style="border-radius: 10px;" (click)="updateCust()"
+                                data-dismiss="modal">UPDATE</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+<!--
+<div class="modal fade" id="custModel">
+    <div class="modal-dialogue">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">&times;</span>
+                <h4 class="modal-title">Update Form</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-group">
+                    Enter custName :<input type="number" name="custId" [(ngModel)]="editObject.custId"
+                        class="form-control"><br />
+                    Enter custName :<input type="text" name="custName" [(ngModel)]="editObject.custName"
+                        class="form-control"><br />
+                    Enter email :<input type="text" name="email" [(ngModel)]="editObject.email"
+                        class="form-control"><br />
+                    Enter state :<input type="text" name="state" [(ngModel)]="editObject.address.state"
+                        class="form-control"><br />
+                    Enter street :<input type="text" name="street" [(ngModel)]="editObject.address.street"
+                        class="form-control"><br />
+                    Enter city :<input type="text" name="city" [(ngModel)]="editObject.address.city"
+                        class="form-control"><br />
+                    Enter houseNo :<input type="text" name="houseNo" [(ngModel)]="editObject.address.houseNo"
+                        class="form-control"><br />
+                    Enter pincode :<input type="text" name="pincode" [(ngModel)]="editObject.address.pincode"
+                        class="form-control"><br />
+                    Enter loginId :<input type="text" name="loginId" [(ngModel)]="editObject.loginId"
+                        class="form-control"><br />
+                    Enter password :<input type="text" name="password" [(ngModel)]="editObject.password"
+                        class="form-control"><br />
+
+                    Enter mobile number:<input type="text" name="mobileNo" [(ngModel)]="editObject.mobileNo"
+                        class="form-control"><br />
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" (click)="updateCust()" data-dismiss="modal">UPDATE</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+-->
+
+
+
+<!--
+
+    <div class="container">
+    <div class="row text-center">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let product of products">
+            <div class="card">
+                <img class="card-img" src="http://localhost:8080/RESTAPI2018/image/{{product.imageName}}">
+                <div class="card-body">
+                    <h4 class="card-title">{{product.name}}</h4>
+                    <p class="card-text">{{product.description}}</p>
+                    <h5>{{product.price | currency: '&#8377;'}}</h5>
+                    <p class="card-text">{{product.category}}</p>
+                    <p class="card-text">Quantity Available:{{product.quantityAdded}}</p>
+                    Quantity:<input type=number name="quantity" [(ngModel)]='quantity' placeholder="1">
+                    <button class="btn btn-primary" (click)="handleAddToCart(product, quantity)">Add To Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+-->

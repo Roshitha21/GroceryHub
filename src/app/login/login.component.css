@@ -1,0 +1,271 @@
+/*body {
+    background-color: #F3EBF6;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.main {
+    background-color: #FFFFFF;
+    width: 400px;
+    height: 400px;
+    margin: 7em auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.sign {
+    padding-top: 40px;
+    color: #8C55AA;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.un {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+form.form1 {
+    padding-top: 40px;
+}
+
+.pass {
+        width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+
+.un:focus, .pass:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+    
+}
+
+.submit {
+  cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, #9C27B0, #E040FB);
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 35%;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.forgot {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: #E1BEE7;
+    padding-top: 15px;
+}
+
+a {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: #E1BEE7;
+    text-decoration: none
+}*/
+
+    * {
+      box-sizing: border-box;
+    }
+    
+    .main-container {
+      min-height: 100vh;
+      background-color: #ecf4f3;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      font-family: 'Rubik', sans-serif;
+      font-size: 13px;
+    }
+    
+    .main-container a {
+      text-decoration: none;
+    }
+    
+    .main-container .login-wrapper {
+      background-color: #fff;
+      -webkit-box-shadow: 0px 0px 172px 6px rgba(0,0,0,0.2);
+      -moz-box-shadow: 0px 0px 172px 6px rgba(0,0,0,0.2);
+      box-shadow: 0px 0px 172px 6px rgba(0,0,0,0.2); 
+    
+      width: 100%;
+      max-width: 900px;
+      min-height: 520px;
+      display: flex;
+    }
+    
+    /* Estilos del contenedor del formulario */
+    .main-container .login-wrapper .form-wrapper {
+      min-width: 45%;
+      
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Estilos del header del formulario */
+    .main-container .login-wrapper .form-wrapper .form-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      
+      padding: 15px;
+      margin-top: 15px;
+    
+      font-weight: 900;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-header .fa-arrow-left,
+    .main-container .login-wrapper .form-wrapper .form-header .register-link,
+    .main-container .login-wrapper .form-wrapper .form-container .forgot-pass {
+      color: #686b72;
+    }
+    
+    /* Estilos del formulario y sus mensajes */
+    .main-container .login-wrapper .form-wrapper .form-container {
+      padding: 0px 60px;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .form-messages {
+      text-align: left;
+      line-height: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .form-messages h2 {
+      margin-bottom: 15px;
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .form input {
+      width: 100%;
+      margin-bottom: 15px;
+      background-color: #eeeeee;
+      border: none;
+      padding: 10px;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .form input:focus {
+      outline: 2px solid #4694a8;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .form a {
+      display: block;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .form .forgot-pass {
+      text-align: right;
+      font-weight: 900;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .form .login-button {
+      margin-top: 20px;
+      margin-bottom: 30px;
+      padding: 10px;
+      border-radius: 50px;
+      background-color: #4694a8;
+      color: #fff;
+      text-align: center;
+    }
+    
+    /* Separador */
+    .main-container .login-wrapper .form-wrapper .form-container .separator {
+      border: 2px solid #e8e9ea;
+      margin-bottom: 35px;
+    }
+    
+    /* Otras opciones de login */
+    .main-container .login-wrapper .form-wrapper .form-container .login-options {
+      margin: 20px 20px;
+      text-align: center;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .login-options .login-text {
+      margin-bottom: 15px;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .login-icons {
+      font-size: 20px;
+    }
+    
+    .main-container .login-wrapper .form-wrapper .form-container .login-icons .fa-facebook-square,
+    .main-container .login-wrapper .form-wrapper .form-container .login-icons .fa-google,
+    .main-container .login-wrapper .form-wrapper .form-container .login-icons .fa-twitter {
+      color: #4694a8;
+      padding: 0px 10px;
+    }
+    
+    /* Estilos del lado derecho */
+    
+    .main-container .image-wrapper {
+      background: url("https://static2.bigstockphoto.com/3/8/2/large1500/283897444.jpg");
+      background-position: center;
+      background-size: cover;
+    
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    
+    .main-container .image-wrapper .image-message {
+      color: #fff;
+      line-height: 20px;
+    
+      padding: 50px 70px 70px 40px;
+    
+      display: flex;
+      flex-direction: row;
+    }
+    
+    .main-container .image-wrapper .image-message .image-hr-container {
+      margin: 5px 20px;
+    }
+    
+    .main-container .image-wrapper .image-message .image-hr-container .image-hr {
+      border: 1px solid #e8e9ea;
+      min-width: 0px;
+    }
+    
+    .main-container .image-wrapper .image-message .image-text h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+   

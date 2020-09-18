@@ -1,0 +1,194 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+
+    body {
+        background-image: url("assets/images/33.jpg") no-repeat center;
+        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .row {
+        height: 100vh;
+        width: 100wh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gainsboro;
+    }
+
+    .col {
+        position: absolute;
+        width: 100%;
+        max-width: 380px;
+        padding: 25px 90px 3px;
+        background: rgba(0, 0, 0, 0.685);
+        border-radius: 10px;
+        color: #fff;
+        box-sizing: border-box;
+        transform: translate(-50%, -50%);
+    }
+
+
+
+
+    .col h4 {
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 2rem;
+        color: #ff652f;
+
+    }
+
+    .col .input-group {
+        position: relative;
+    }
+
+    .col .input-group input {
+        width: 100%;
+        padding: 2px 0;
+        font-size: 20px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background-color: transparent;
+        color: inherit;
+    }
+
+    .col .input-group label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 0.5rem;
+        pointer-events: none;
+        transition: .3s ease-out;
+    }
+
+    .col .input-group input:focus+label,
+    .col .input-group input:valid+label {
+        transform: translateY(-18px);
+        color: #ff652f;
+        font-size: .8rem;
+    }
+
+    .btn-large btn-submit {
+        display: block;
+        margin-left: auto;
+        border: none;
+        outline: none;
+        background: #ff652f;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+
+    }
+</style>
+    
+<div class="main_content"> 
+    <style>
+        h3{
+          
+          font-size: 15px;
+          color: white; font-family: "Great Vibes", cursive;  font-weight: normal;
+        }</style>
+      
+<div class="row">
+
+<form #sellForm=ngForm (ngSubmit)="OnSubmit(sellForm.value)">
+    <div class="col">
+        <h4>Upload Products</h4>
+        <h3>Product Name:</h3>
+        <div class="input-group">
+            <input type="text" name="productName" [(ngModel)]='products.productName' required>
+            <label for="productName"> </label>
+        </div>
+        <h3>Description:</h3>
+        <div class="input-group">
+            <input type="text" name="description" [(ngModel)]='products.description' required>
+            <label for="description"> </label>
+        </div>
+
+       <h3> Category:</h3>
+        <div class="input-group">
+            <input type="text" name="category" [(ngModel)]='products.category' required>
+            <label for="category"></label>
+        </div>
+       
+
+    
+            <label for="quantityAdded"  required>Quantity Added:</label>
+            <select class="form-control"  name="quantityAdded" [(ngModel)]='products.quantityAdded'>
+              <option>0.25</option>
+              <option>0.5</option>
+              <option>1</option>
+              <option>1.25</option>
+              <option>1.5</option>
+              <option>2</option>
+              <option>2.25</option>
+              <option>2.5</option>
+              <option>3</option>
+              <option>3.25</option>
+              <option>3.5</option>
+              <option>4</option>
+              <option>4.25</option>
+              <option>4.5</option>
+              <option>5</option>
+              <option>5.25</option>
+              <option>5.5</option>
+              <option>6</option>
+
+
+            </select>
+
+
+          
+                    <label for="units"  required>Units(select one):</label>
+                    <select class="form-control"  name="units" [(ngModel)]='products.units'>
+                      <option>kgs</option>
+                      <option>dozen</option>
+                      <option>litre</option>
+                      <option>none</option>
+                    </select>
+
+
+
+
+
+
+       <h3> Price:</h3>
+        <div class="input-group">
+            <input type="number" name="price" [(ngModel)]='products.price' required>
+            <label for="price"> </label>
+        </div>
+
+
+
+
+        <img [src]="imageUrl" style="width:200px;height: 180px;">
+        <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+<br>
+        <input style="font-size:20px"type="submit" class="btn btn-primary" [disabled]="Image.value=='' || !sellForm.valid">
+    </div>
+</form>
+
+</div>
+  </div>
+

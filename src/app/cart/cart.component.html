@@ -1,0 +1,46 @@
+<div>
+    <div class="topnav">
+        <div>
+            <a class="nav-link" (click)="callHome()">
+                <span class="glyphicon glyphicon-home"></span></a>
+                <a  class="link-3"routerLink="/products">Products</a>
+
+            <a class="nav-link" (click)="showEditPopup()">Update Profile</a>
+            <a class="nav-link" (click)="routeTosellProduct()">Sell Your Products</a>
+            <a class="nav-link" (click)="routeToViewMyCart()"><span class="glyphicon glyphicon-shopping-cart">Cart </span></a>
+            <a class="nav-link" (click)="routeToProductsAddedByMe()">Products Added</a>
+            <a class="nav-link" (click)="routeToMyOrders()">Order History</a>
+            <a  class="link-3"routerLink="/review">Review</a>
+
+            <a class="nav-link" (click)="callLogOut()">Logout
+                <span class="glyphicon glyphicon-log-out"></span>
+            </a>
+        </div>
+    </div>
+    <div>
+        <h6 style="text-align: center;">CART</h6>
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let cartItem of cartItems">
+                <div class="card">
+                    <div class="card-body">
+                        <img class="card-img" src="http://localhost:8080/RESTAPI2018/image/{{cartItem.products.imageName}}">
+                        <h4 class="card-title">{{cartItem.products.productName}}</h4>
+                        <h4 class="card-title">{{cartItem.products.description}}</h4>
+                        <p class="card-text">Quantity:{{cartItem.cartQuantity}}{{cartItem.products.units}}</p>
+                        <p class="card-text">&#8377; {{cartItem.price}}</p>
+                        <button  style="border-radius: 10px;" class="btn btn-primary" (click)="removeFromCart(cartItem)">Remove From Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        h6{color: #d54d7b; font-family: "Great Vibes", cursive; font-size: 20px;  font-weight: normal;}
+        h5{color:white; font-family: "Great Vibes", cursive; font-size: 20px;  font-weight: normal;}
+     </style>
+    
+    <h6 >TotalPrice:&#8377; {{cartTotal}}</h6>
+    <button  class="btn btn-primary" style="border-radius: 10px;"  routerLink="/order" ><h5>Place Order</h5></button>
+</div>

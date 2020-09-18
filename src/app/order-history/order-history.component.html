@@ -1,0 +1,38 @@
+
+ <div class="topnav">
+    <div>
+        <a class="nav-link" (click)="callHome()">
+            <span class="glyphicon glyphicon-home"></span></a>
+            <a  class="link-3"routerLink="/products">Products</a>
+
+        <a class="nav-link" (click)="showEditPopup()">Update Profile</a>
+        <a class="nav-link" (click)="routeTosellProduct()">Sell Your Products</a>
+        <a class="nav-link" (click)="routeToViewMyCart()"><span class="glyphicon glyphicon-shopping-cart">Cart </span></a>
+        <a class="nav-link" (click)="routeToProductsAddedByMe()">Products Added</a>
+        <a class="nav-link" (click)="routeToMyOrders()">Order History</a>
+        <a  class="link-3"routerLink="/review">Review</a>
+
+        <a class="nav-link" (click)="callLogOut()">Logout
+            <span class="glyphicon glyphicon-log-out"></span>
+        </a>
+    </div>
+</div><br>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let order of orders">
+            <div class="card" style="padding: 0px;">
+                <div class="card-body"style="padding: 0px;" >
+                <img class="card-img" src="http://localhost:8080/RESTAPI2018/image/{{order.products.imageName}}">
+                <p class="card-text">OrderId:{{order.orders.orderId}}</p>
+                <h4 class="card-title">{{order.products.productName}}</h4>
+                <p class="card-title">{{order.products.description}}</p>
+                <p>Price:&#8377;{{order.products.price}}</p>
+                <h5>Total Price:&#8377;{{order.orders.totalPrice }}</h5>
+                Order Status:{{order.orders.orderStatus}}
+            </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
